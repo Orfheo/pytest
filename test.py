@@ -1,7 +1,10 @@
 import sys
 
+import testrc
+
+from PyQt5.QtGui import QIcon
 from PyQt5 import QtCore,QtWidgets
-from PyQt5.QtWidgets import QMainWindow,QPlainTextEdit
+from PyQt5.QtWidgets import QMainWindow,QPlainTextEdit,QComboBox
 from PyQt5.QtCore import QSize
 
 from zaza.gigio import gigio
@@ -30,13 +33,27 @@ class Window(QMainWindow):
     def __init__(self):
         QMainWindow.__init__( self )
 
-        self.setMinimumSize(QSize(440,240))
-        self.setWindowTitle( "test" )
+        self.setMinimumSize(QSize(440, 240))
+        self.setWindowTitle("test")
 
+        self.addCombo()
+        self.addText()
+
+    def addText(self):
         self.e = QPlainTextEdit(self)
         self.e.insertPlainText("This is a test")
-        self.e.move ( 10, 10 )
-        self.e.resize ( 400, 200 )
+        self.e.move(40, 40)
+        self.e.resize(400, 200)
+
+    def addCombo(self):
+        self.i = QComboBox(self)
+        self.i.move(40, 10)
+        self.i.addItem(QIcon(':/images/copy.png'), "Copy")
+        self.i.addItem(QIcon(':/images/new.png'), "New")
+        self.i.addItem(QIcon(':/images/cut.png'), "Cut")
+        self.i.addItem(QIcon(':/images/paste.png'), "Paste")
+        self.i.addItem(QIcon(':/images/save.png'), "Save")
+        self.i.addItem(QIcon(':/images/open.png'), "Open")
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
