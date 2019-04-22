@@ -36,17 +36,18 @@ class Window(QMainWindow):
         self.setMinimumSize(QSize(440, 240))
         self.setWindowTitle("test")
 
-        self.addCombo()
-        self.addText()
+        self.addText(self)
+        self.addCombo(self)
 
-    def addText(self):
+
+    def addText(self, parent):
         self.e = QPlainTextEdit(self)
         self.e.insertPlainText("This is a test")
         self.e.move(40, 40)
         self.e.resize(400, 200)
 
-    def addCombo(self):
-        self.i = QComboBox(self)
+    def addCombo(self, parent):
+        self.i = QComboBox(parent)
         self.i.move(40, 10)
         self.i.addItem(QIcon(':/images/copy.png'), "Copy")
         self.i.addItem(QIcon(':/images/new.png'), "New")
