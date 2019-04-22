@@ -1,3 +1,9 @@
+import sys
+
+from PyQt5 import QtCore,QtWidgets
+from PyQt5.QtWidgets import QMainWindow,QPlainTextEdit
+from PyQt5.QtCore import QSize
+
 from zaza.gigio import gigio
 from zaza.papero import zizo
 
@@ -20,14 +26,32 @@ class Test :
         self.x = 1
         self.y = 2
 
-t = Test ( 0, 0 )
-t.pippo()
-g = gigio(2)
-z = zizo("a")
+class Window(QMainWindow):
+    def __init__(self):
+        QMainWindow.__init__( self )
 
-print ( t, g, z )
+        self.setMinimumSize(QSize(440,240))
+        self.setWindowTitle( "test" )
 
-z.__str__()
+        self.e = QPlainTextEdit(self)
+        self.e.insertPlainText("This is a test")
+        self.e.move ( 10, 10 )
+        self.e.resize ( 400, 200 )
+
+if __name__ == "__main__":
+    app = QtWidgets.QApplication(sys.argv)
+    w = Window()
+    w.show()
+    t = Test ( 0, 0 )
+    t.pippo()
+    g = gigio(2)
+    z = zizo("a")
+
+    print ( t, g, z )
+
+    z.__str__()
+
+    sys.exit ( app.exec() )
 
 
 
