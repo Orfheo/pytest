@@ -4,7 +4,7 @@ import testrc
 
 from PyQt5.QtGui import QIcon
 from PyQt5 import QtCore,QtWidgets
-from PyQt5.QtWidgets import QMainWindow,QPlainTextEdit,QComboBox
+from PyQt5.QtWidgets import QMainWindow,QPlainTextEdit,QComboBox,QAction
 from PyQt5.QtCore import QSize
 
 from zaza.gigio import gigio
@@ -37,12 +37,16 @@ class Window(QMainWindow):
         self.setWindowTitle("test")
 
         self.addText(self)
-        self.addCombo(self)
+        #self.addCombo(self)
+
+        self.a = QAction ( QIcon(':/images/copy.png'), "Copy", self, triggered=self.action )
+        self.t = self.addToolBar("Test")
+        self.t.addAction( self.a )
 
 
     def addText(self, parent):
         self.e = QPlainTextEdit(self)
-        self.e.insertPlainText("This is a test")
+        self.e.appendPlainText("This is a test\n")
         self.e.move(40, 40)
         self.e.resize(400, 200)
 
@@ -55,6 +59,10 @@ class Window(QMainWindow):
         self.i.addItem(QIcon(':/images/paste.png'), "Paste")
         self.i.addItem(QIcon(':/images/save.png'), "Save")
         self.i.addItem(QIcon(':/images/open.png'), "Open")
+
+    def action(self):
+        self.e.insertPlainText("got it\n")
+        self.e.verticalScrollBar().setValue(self.e.verticalScrollBar().maximum())
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
