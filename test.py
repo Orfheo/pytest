@@ -12,22 +12,45 @@ from zaza.papero import zizo
 
 class Test :
     """
-        Again class for testing
+        A test class
     """
     def __init__ ( self, x=0, y=0) :
+        """
+        Init method, with default values
+
+        :param x: x coordinate
+        :param y: y coordinate
+        :rtype: None
+        """
         self.x = 0
         self.y = 0
 
     def __str__(self):
+        """
+        String representation
+        :return: string
+        """
         return "(%s,%s)" % (self.x,self.y)
 
     def pippo (self):
         """
-            x = 1
-            y = 2
+        A test method, without arguments
+
+        :return: Noe
         """
         self.x = 1
         self.y = 2
+
+
+class MyQPlainTextEdit(QPlainTextEdit):
+    def __init__(self,parent):
+        super().__init__(parent)
+
+    def goTop(self):
+        self.verticalScrollBar().setValue(self.verticalScrollBar().maximum())
+
+    def goBottom(self):
+        self.verticalScrollBar().setValue(0)
 
 class Window(QMainWindow):
     def __init__(self):
@@ -39,13 +62,17 @@ class Window(QMainWindow):
         self.addText(self)
         #self.addCombo(self)
 
-        self.a = QAction ( QIcon(':/images/copy.png'), "Copy", self, triggered=self.action )
+        self.copy = QAction ( QIcon(':/images/copy.png'), "Copy", self, triggered=self.actionCopy )
+        self.new  = QAction ( QIcon(':/images/new.png'),  "New", self,  triggered=self.actionNew  )
+
         self.t = self.addToolBar("Test")
-        self.t.addAction( self.a )
+
+        self.t.addAction( self.copy )
+        self.t.addAction( self.new )
 
 
     def addText(self, parent):
-        self.e = QPlainTextEdit(self)
+        self.e = MyQPlainTextEdit(self)
         self.e.appendPlainText("This is a test\n")
         self.e.move(40, 40)
         self.e.resize(400, 200)
@@ -60,9 +87,14 @@ class Window(QMainWindow):
         self.i.addItem(QIcon(':/images/save.png'), "Save")
         self.i.addItem(QIcon(':/images/open.png'), "Open")
 
-    def action(self):
-        self.e.insertPlainText("got it\n")
-        self.e.verticalScrollBar().setValue(self.e.verticalScrollBar().maximum())
+
+    def actionCopy(self):
+        self.e.insertPlainText("got Copy\n")
+        self.e.goTop()
+
+    def actionNew(self):
+        self.e.insertPlainText("got New\n")
+        self.e.goBottom()
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
