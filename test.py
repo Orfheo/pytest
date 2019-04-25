@@ -53,8 +53,11 @@ class MyQPlainTextEdit(QPlainTextEdit):
         self.verticalScrollBar().setValue(0)
 
 class Window(QMainWindow):
+    """
+    TODO: test it
+    """
     def __init__(self):
-        QMainWindow.__init__( self )
+        super().__init__()
 
         self.setMinimumSize(QSize(440, 240))
         self.setWindowTitle("test")
