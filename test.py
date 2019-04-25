@@ -92,11 +92,11 @@ class Window(QMainWindow):
 
 
     def actionCopy(self):
-        self.e.insertPlainText("got Copy\n")
+        self.e.insertPlainText("action got Copy\n")
         self.e.goTop()
 
     def actionNew(self):
-        self.e.insertPlainText("got New\n")
+        self.e.insertPlainText("action got New\n")
         self.e.goBottom()
 
 if __name__ == "__main__":
