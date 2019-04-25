@@ -106,6 +106,9 @@ if __name__ == "__main__":
     t = Test ( 0, 0 )
     t.pippo()
     g = gigio(2)
+    """
+        comment test
+    """
     z = zizo("a")
 
     print ( t, g, z )
