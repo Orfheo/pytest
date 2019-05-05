@@ -117,7 +117,7 @@ if __name__ == "__main__":
 
     z.__str__()
 
-    #raise WException ( "test" )
+    raise WException ( "test" )
 
     sys.exit ( app.exec() )
 
