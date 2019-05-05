@@ -10,6 +10,8 @@ from PyQt5.QtCore import QSize
 from zaza.gigio import gigio
 from zaza.papero import zizo
 
+from myexcp.WException import WException
+
 class Test :
     """
         A test class
@@ -114,6 +116,8 @@ if __name__ == "__main__":
     print ( t, g, z )
 
     z.__str__()
+
+    #raise WException ( "test" )
 
     sys.exit ( app.exec() )
 
