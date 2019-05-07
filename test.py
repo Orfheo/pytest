@@ -75,6 +75,8 @@ class Window(QMainWindow):
         self.t.addAction( self.copy )
         self.t.addAction( self.new )
 
+        raise WException ( "test" )
+
 
     def addText(self, parent):
         self.e = MyQPlainTextEdit(self)
@@ -103,7 +105,12 @@ class Window(QMainWindow):
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
-    w = Window()
+    try:
+        w = Window()
+    except WException as e:
+        e.print()
+        sys.exit()
+
     w.show()
     t = Test ( 0, 0 )
     t.pippo()
@@ -117,7 +124,7 @@ if __name__ == "__main__":
 
     z.__str__()
 
-    #raise WException ( "test" )
+
 
     sys.exit ( app.exec() )
 
