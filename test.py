@@ -75,7 +75,7 @@ class Window(QMainWindow):
         self.t.addAction( self.copy )
         self.t.addAction( self.new )
 
-        raise WException ( "test" )
+        #raise WException ( "test" )
 
 
     def addText(self, parent):

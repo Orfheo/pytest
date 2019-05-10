@@ -15,3 +15,8 @@ class WException(Exception):
 class WExceptionWidget(WException):
     def __init__(self,message):
         self.message = message
+
+
+class WExceptionWidget(WException):
+    def __init__(self,message):
+        self.message = message
