@@ -1,5 +1,6 @@
 import sys
 import traceback
+import subprocess
 
 from myexcp.WException import WException,WExceptionWidget
 
@@ -38,8 +39,22 @@ class Form(QObject):
     def ok_handler(self):
         self.label.setText("Hello "
         +self.line.text())
+        #
+        # brief example about command pipe from python
+        out = subprocess.Popen (['bshow', '-a'],
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT)
+
+        for line in out.stdout:
+            list=line.decode().rstrip("\n").split(' ')
+            storage=list[0].split(':')[1].rstrip("_")
+            nvol=list[3]
+            space=list[5]
+            print ( storage, nvol, space )
 
 if __name__ == "__main__":
+
+
     app = QApplication(sys.argv)
     try:
         form = Form('ui/form.ui')
